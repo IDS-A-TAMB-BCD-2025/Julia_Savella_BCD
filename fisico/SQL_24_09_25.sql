@@ -1,0 +1,366 @@
+CREATE DATABASE IF NOT EXISTS BD_ALUGUEL_PRODUTOS_2ANO;
+USE BD_ALUGUEL_PRODUTOS_2ANO;
+
+CREATE TABLE IF NOT EXISTS CLIENTE(
+	CLIENTE_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    EMAIL VARCHAR(255) NOT NULL,
+	CPF VARCHAR(14) NOT NULL,
+	NOME VARCHAR(255) NOT NULL,
+	TELEFONE VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS PRODUTO(
+	PRODUTO_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    NOME VARCHAR(255) NOT NULL,
+    DESCRICAO VARCHAR(500) NOT NULL,
+    PRECO DECIMAL NOT NULL,
+    QTD_DISPONIVEL INTEGER NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS ALUGUEL(
+	ALUGUEL_ID INTEGER AUTO_INCREMENT PRIMARY KEY,
+    DATA_ALUGUEL DATE NOT NULL,
+    DATA_DEVOLUCAO DATE NOT NULL,
+    VALOR_TOTAL DECIMAL NOT NULL,
+    FK_CLIENTE_ID INTEGER NOT NULL,
+    FK_PRODUTO_ID INTEGER NOT NULL,
+    FOREIGN KEY (FK_CLIENTE_ID) REFERENCES CLIENTE(CLIENTE_ID) ON DELETE CASCADE,
+    FOREIGN KEY (FK_PRODUTO_ID) REFERENCES PRODUTO(PRODUTO_ID) ON DELETE CASCADE
+);
+
+-- DML - LINGUAGEM DE MANIPULACAO
+-- INSERT - INSERIR
+INSERT INTO CLIENTE (EMAIL,TELEFONE,CPF,NOME)
+VALUES ("email@email.com","19999999999","123456789","Leo");
+
+INSERT INTO CLIENTE (EMAIL,TELEFONE,CPF,NOME)
+VALUES ("julia@email.com","19996340870","54951622858","Julia");
+
+INSERT INTO CLIENTE (NOME,EMAIL,TELEFONE,CPF)
+VALUES ("Julia","julia@email.com","19996340870","22222222222");
+
+-- select - selecionar
+SELECT * FROM CLIENTE;
+
+-- ISERIR PRODUTOS
+INSERT INTO PRODUTO (NOME,DESCRICAO,PRECO,QTD_DISPONIVEL)
+VALUES ("MACBOOK","NOTEBOOK APPLE",478990,5);
+
+INSERT INTO PRODUTO (NOME,DESCRICAO,PRECO,QTD_DISPONIVEL)
+VALUES ("IPHONE 17","CELULAR APPLE",16.000,10);
+
+INSERT INTO PRODUTO (NOME,DESCRICAO,PRECO,QTD_DISPONIVEL)
+VALUES ("IPAD","TABLET APPLE",2659,20);
+
+INSERT INTO PRODUTO (NOME,DESCRICAO,PRECO,QTD_DISPONIVEL)
+VALUES ("AIRPODS","FONE APPLE",1549,35);
+
+INSERT INTO PRODUTO (NOME,DESCRICAO,PRECO,QTD_DISPONIVEL)
+VALUES ("APPLE WATCH","RELOGIO APPLE",1530,40);
+
+INSERT INTO PRODUTO (NOME,DESCRICAO,PRECO,QTD_DISPONIVEL)
+VALUES ("AIRTAG","RASTREADOR APPLE",683,59);
+
+INSERT INTO PRODUTO (NOME,DESCRICAO,PRECO,QTD_DISPONIVEL)
+VALUES ("IPHONE 13","CELULAR APPLE",3779,17);
+
+INSERT INTO PRODUTO (NOME,DESCRICAO,PRECO,QTD_DISPONIVEL)
+VALUES ("MOTO G05","CELULAR MOTOROLA",664,57);
+
+INSERT INTO PRODUTO (NOME,DESCRICAO,PRECO,QTD_DISPONIVEL)
+VALUES ("PS5","VIDEOGAME DA PLAYSTATION",3789,12);
+
+INSERT INTO PRODUTO (NOME,DESCRICAO,PRECO,QTD_DISPONIVEL)
+VALUES ("PS4","VIDEOGAME DA PLAYSTATION",1599,22);
+
+SELECT * FROM PRODUTO;
+
+-- INSERIR ALUGUEIS
+SELECT * FROM CLIENTE;
+SELECT * FROM PRODUTO;
+
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-24",
+						"2025-10-01",
+                        7890,
+                        3,
+                        2);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-22",
+						"2025-10-10",
+                        5000,
+                        4,
+                        1);
+
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-22",
+						"2025-11-09",
+                        2000,
+                        2,
+                        5);
+
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-22",
+                        700,
+                        1,
+                        8);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+                        700,
+                        5,
+                        6);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						3000,
+                        6,
+                        3);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						3000,
+                        10,
+                        12);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						2700,
+                        11,
+                        8);
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						2700,
+                        15,
+                        13);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						1500,
+                        7,
+                        7);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						1200,
+                        20,
+                        5);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						900,
+                        18,
+                        4);
+	
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						1700,
+                        16,
+                        1);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						700,
+                        15,
+                        2);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						1200,
+                        14,
+                        3);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						1000,
+                        10,
+                        6);
+                        
+INSERT INTO ALUGUEL (	DATA_ALUGUEL,
+						DATA_DEVOLUCAO,
+						VALOR_TOTAL,
+                        FK_CLIENTE_ID,
+                        FK_PRODUTO_ID)
+VALUES				(	"2025-09-21",
+						"2025-11-13",
+						700,
+                        14,
+                        8);
+
+SELECT * FROM ALUGUEL;
+
+-- ATUALIZAR UM REGISTRO
+UPDATE PRODUTO 
+SET    PRECO = 3500
+WHERE  PRODUTO_ID = 1;
+
+UPDATE PRODUTO 
+SET    PRECO = 2500
+WHERE  PRODUTO_ID = 4;
+
+UPDATE PRODUTO 
+SET    PRECO = 16500
+WHERE  PRODUTO_ID = 2;
+
+UPDATE PRODUTO 
+SET    PRECO = 3500
+WHERE  PRODUTO_ID = 3;
+
+UPDATE PRODUTO 
+SET    QTD_DISPONIVEL = 5
+WHERE  PRODUTO_ID = 1;
+
+UPDATE PRODUTO 
+SET    QTD_DISPONIVEL = 15
+WHERE  PRODUTO_ID = 2;
+
+UPDATE PRODUTO 
+SET    QTD_DISPONIVEL = 20
+WHERE  PRODUTO_ID = 3;
+
+UPDATE PRODUTO 
+SET    QTD_DISPONIVEL = 15
+WHERE  PRODUTO_ID = 4;
+
+UPDATE PRODUTO 
+SET    QTD_DISPONIVEL = 5
+WHERE  PRODUTO_ID = 5;
+
+UPDATE CLIENTE
+SET    EMAIL = "NOVO@EMAIL1"
+WHERE  CLIENTE_ID = 1;
+
+UPDATE CLIENTE 
+SET    EMAIL = "NOVO@EMAIL2"
+WHERE  CLIENTE_ID = 2;
+
+UPDATE ALUGUEL 
+SET    DATA_DEVOLUCAO = "2025-12-11"
+WHERE  ALUGUEL_ID = 1;
+
+UPDATE ALUGUEL 
+SET    DATA_DEVOLUCAO = "2025-12-11"
+WHERE  ALUGUEL_ID = 2;
+
+UPDATE ALUGUEL 
+SET    DATA_DEVOLUCAO = "2025-12-11"
+WHERE  ALUGUEL_ID = 3;
+
+UPDATE ALUGUEL 
+SET    DATA_DEVOLUCAO = "2025-12-11"
+WHERE  ALUGUEL_ID = 4;
+
+UPDATE ALUGUEL 
+SET    DATA_DEVOLUCAO = "2025-12-11"
+WHERE  ALUGUEL_ID = 5;
+
+UPDATE ALUGUEL 
+SET    DATA_DEVOLUCAO = "2025-12-11"
+WHERE  ALUGUEL_ID = 6;
+
+UPDATE ALUGUEL 
+SET    DATA_DEVOLUCAO = "2025-12-11"
+WHERE  ALUGUEL_ID = 7;
+
+UPDATE ALUGUEL 
+SET    DATA_DEVOLUCAO = "2025-12-11"
+WHERE  ALUGUEL_ID = 8;
+
+-- APAGAR UM REGISTRO (DELETE)
+DELETE FROM CLIENTE 
+WHERE CLIENTE_ID = 1;
+
+DELETE FROM PRODUTO
+WHERE PRODUTO_ID = 4;
+
+DELETE FROM ALUGUEL 
+WHERE ALUGUEL_ID = 2;
+
+SELECT * FROM CLIENTE;
+
+SELECT *
+FROM CLIENTE
+WHERE CLIENTE_ID = 2;
+
+SELECT 	NOME,
+		PRECO
+ FROM   PRODUTO
+WHERE   PRODUTO_ID = 3;
